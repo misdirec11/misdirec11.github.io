@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - JUANDA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.4;
+        }
+
+        /* Grid Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+
+        /* Floating Navigation */
+        .nav-container {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 8px;
+        }
+
+        .nav-pills {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-pill {
+            padding: 12px 24px;
+            color: #888;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-pill:hover, .nav-pill.active {
+            color: #fff;
+            background: linear-gradient(135deg, #00ff87, #60efff);
+            box-shadow: 0 8px 32px rgba(0, 255, 135, 0.3);
+        }
+
+        /* Asymmetric Layout */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Hero Section - Diagonal Split */
+        .hero {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(0, 255, 135, 0.03));
+            clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 800;
+            line-height: 0.9;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff, #00ff87);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text .subtitle {
+            font-size: 18px;
+            color: #888;
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            font-weight: 500;
+        }
+
+        .hero-cta:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 255, 135, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 400px;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-card:nth-child(1) {
+            top: 0;
+            right: 0;
+            animation-delay: 0s;
+        }
+
+        .floating-card:nth-child(2) {
+            bottom: 80px;
+            left: 20px;
+            animation-delay: 2s;
+        }
+
+        .floating-card:nth-child(3) {
+            top: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* About Section - Offset Layout */
+        .about {
+            background: #0a0a0a;
+            padding: 120px 0;
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 0.4fr 1fr;
+            gap: 120px;
+            align-items: start;
+        }
+
+        .about-sidebar {
+            position: sticky;
+            top: 150px;
+        }
+
+        .about-sidebar h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            background: linear-gradient(135deg, #ffffff, #00ff87);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 40px;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .about-block {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #00ff87, #60efff);
+        }
+
+        .about-block h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: #00ff87;
+        }
+
+        .about-block p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+        }
+
+        .skill-item {
+            background: rgba(0, 255, 135, 0.1);
+            border: 1px solid rgba(0, 255, 135, 0.2);
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+            color: #00ff87;
+            font-weight: 500;
+        }
+
+        /* Portfolio Section - Masonry Layout */
+        .portfolio {
+            background: #0a0a0a;
+            padding: 120px 0;
+        }
+
+        .portfolio-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .portfolio-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .portfolio-header h2 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #00ff87);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            grid-auto-rows: min-content;
+        }
+
+        .project-card {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 255, 135, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-card:nth-child(2n) {
+            margin-top: 40px;
+        }
+
+        .project-image {
+            height: 240px;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 255, 135, 0.1), rgba(96, 239, 255, 0.1));
+        }
+
+        .project-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #00ff87;
+        }
+
+        .project-info {
+            padding: 30px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .project-desc {
+            color: #aaa;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .project-link {
+            color: #00ff87;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-link:hover {
+            color: #60efff;
+        }
+
+        .project-link::after {
+            content: '→';
+            margin-left: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-link:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* Sertifikasi Section */
+        .sertifikasi {
+            background: #0a0a0a;
+            padding: 120px 0;
+        }
+
+        .sertifikasi-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .sertifikasi-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .sertifikasi-header h2 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #00ff87);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+
+        .sertifikasi-card {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .sertifikasi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #00ff87, #60efff);
+        }
+
+        .sertifikasi-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            color: #00ff87;
+        }
+
+        .certification-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .cert-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .cert-item:hover {
+            background: rgba(0, 255, 135, 0.05);
+            border-color: rgba(0, 255, 135, 0.2);
+        }
+
+        .cert-item i {
+            color: #00ff87;
+            font-size: 18px;
+        }
+
+        .cert-item span {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-sidebar h2 {
+                writing-mode: horizontal-tb;
+                text-orientation: initial;
+                font-size: 2.5rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card:nth-child(2n) {
+                margin-top: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                position: fixed;
+                bottom: 20px;
+                top: auto;
+                left: 20px;
+                right: 20px;
+                transform: none;
+                border-radius: 20px;
+                padding: 12px;
+            }
+
+            .nav-pills {
+                justify-content: space-around;
+            }
+
+            .nav-pill {
+                padding: 12px 16px;
+                font-size: 12px;
+            }
+
+            .hero-content,
+            .about-container,
+            .portfolio-container,
+            .sertifikasi-container {
+                padding: 0 20px;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .about-block {
+                padding: 24px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+
+            .sertifikasi-card {
+                padding: 24px;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #00ff87, #60efff);
+            border-radius: 4px;
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #00ff87, #60efff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Contact Info Styling */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+            margin-top: 16px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0,255,135,0.07);
+            border: 1px solid rgba(0,255,135,0.15);
+            border-radius: 12px;
+            padding: 10px 18px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background 0.3s, border 0.3s;
+        }
+        .contact-item:hover {
+            background: rgba(0,255,135,0.15);
+            border: 1px solid #00ff87;
+            color: #00ff87;
+        }
+        .contact-icon {
+            font-size: 18px;
+            color: #00ff87;
+        }
+        .hero-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .profile-photo {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #00ff87;
+            box-shadow: 0 0 32px 0 rgba(0,255,135,0.25), 0 4px 32px 0 rgba(0,0,0,0.5);
+            background: #181818;
+            transition: box-shadow 0.3s, border 0.3s;
+        }
+        .profile-photo:hover {
+            box-shadow: 0 0 48px 0 #60efff, 0 8px 48px 0 rgba(0,255,135,0.35);
+            border: 4px solid #60efff;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-overlay" id="loading">
+        <div class="loading-text">Loading Portfolio...</div>
+    </div>
+
+    <!-- Floating Navigation -->
+    <nav class="nav-container">
+        <div class="nav-pills">
+            <a href="#hero" class="nav-pill active">Beranda</a>
+            <a href="#about" class="nav-pill">Tentang</a>
+            <a href="#portfolio" class="nav-pill">Karya</a>
+            <a href="#sertifikasi" class="nav-pill">Sertifikasi</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+<section id="hero" class="section hero">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1>Juanda</h1>
+            <p class="subtitle">Saya adalah Alumni dari Universitas Malikussaleh jurusan S1 Teknik Informatika yang memiliki passion dalam pengembangan web. Saya berfokus pada teknologi web modern dan terus belajar untuk mengembangkan kemampuan saya dalam menciptakan solusi digital yang inovatif dan bermanfaat.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <span>081263498942</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    <span>pjuanda12@gmail.com</span>
+                </div>
+            </div>
+            
+            <a href="#portfolio" class="hero-cta">
+                <span>Lihat Karya Saya</span>
+                <span>→</span>
+            </a>
+        </div>
+        
+        <div class="hero-image">
+            <img src="FOTO JUANDA.jpg" alt="Juanda - Web Developer" class="profile-photo">
+        </div>
+    </div>
+</section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="about-container">
+            <div class="about-sidebar">
+                <h2>TENTANG</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-block fade-up">
+                    <h3>Profil</h3>
+                    <p>Saya lulusan Teknik Informatika dengan fokus pada pengembangan web dan analisis data. Keahlian saya meliputi PHP manual, MySQL, dan Laravel, yang saya kembangkan melalui berbagai proyek dan pengalaman magang.</p>
+                    <p>Saya selalu terbuka untuk belajar dan mengembangkan keahlian di bidang teknologi, terutama dalam pengembangan aplikasi web yang efisien, terstruktur, dan mudah dikembangkan.</p>
+                </div>
+
+                <div class="about-block fade-up">
+                    <h3>Pendidikan & Pengalaman</h3>
+                    <p><strong>S1 Teknik Informatika</strong><br>Universitas Malikussaleh, 2024</p>
+                    <p><strong>Freelance Web Developer</strong><br>Mandiri (September 2024 - Sekarang)</p>
+                    <p><strong>Staf Administrasi</strong><br>Fotocopy Ayahwa FC (April 2025 - Sekarang)</p>
+                    <p><strong>IT Konsultan - Magang</strong><br>PT Perta Arun Gas (Juli - September 2022)</p>
+                </div>
+
+                <div class="about-block fade-up">
+                    <h3>Keahlian</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">PHP</div>
+                        <div class="skill-item">MySQL</div>
+                        <div class="skill-item">HTML</div>
+                        <div class="skill-item">JavaScript</div>
+                        <div class="skill-item">Python</div>
+                        <div class="skill-item">Canva</div>
+                        <div class="skill-item">Photoshop</div>
+                        <div class="skill-item">Administrasi</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Portfolio Section -->
+<section id="portfolio" class="portfolio section">
+    <div class="portfolio-container">
+        <div class="portfolio-header">
+            <h2>Karya Saya</h2>
+        </div>
+        
+        <div class="portfolio-grid">
+            <div class="project-card fade-up">
+                <div class="project-image">
+                    <img src="images.png" alt="Website Undangan Digital" class="project-bg-image">
+                    <div class="project-number">01</div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Website Undangan Digital</h3>
+                    <p class="project-desc">Platform undangan digital modern dengan fitur RSVP dan galeri foto. Dibangun menggunakan teknologi web terbaru dengan tim kolaborasi.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Laravel</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://www.listundangan.my.id/" target="_blank" class="project-link">Lihat Proyek</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Sertifikasi Section -->
+    <section id="sertifikasi" class="sertifikasi section">
+        <div class="sertifikasi-container">
+            <div class="sertifikasi-header">
+                <h2>Sertifikasi</h2>
+            </div>
+            
+            <div class="sertifikasi-card fade-up">
+                <h3>Sertifikasi & Kursus</h3>
+                <div class="certification-list">
+                    <div class="cert-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Kepanitiaan PKKMB</span>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Sertifikat Penghargaan Mini Bootcamp Back End PHP Batch 1</span>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Certificate Of Completion Guide to Learn SQL with Al at DQlab</span>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Certificate Of Completion Guide to Learn R with Al at DQlab</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loading').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active Navigation
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-pill');
+
+        function updateActiveNav() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax Effect
+        let ticking = false;
+
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            
+            // Floating cards parallax
+            document.querySelectorAll('.floating-card').forEach((card, index) => {
+                const speed = 0.5 + (index * 0.2);
+                card.style.transform = `translateY(${scrolled * speed * 0.3}px)`;
+            });
+
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            updateActiveNav();
+            
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Mouse Movement Effect
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.project-card');
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const cardX = rect.left + rect.width / 2;
+                const cardY = rect.top + rect.height / 2;
+                
+                const deltaX = (mouseX - cardX) * 0.01;
+                const deltaY = (mouseY - cardY) * 0.01;
+                
+                card.style.transform = `perspective(1000px) rotateX(${deltaY}deg) rotateY(${deltaX}deg) translateZ(0)`;
+            });
+            
+            // Reset transform when mouse leaves
+            cards.forEach(card => {
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+                });
+            });
+        });
+
+        // Dynamic Background Grid
+        let gridOffset = 0;
+        function animateGrid() {
+            gridOffset += 0.5;
+            document.body.style.backgroundPosition = `${gridOffset}px ${gridOffset}px`;
+            requestAnimationFrame(animateGrid);
+        }
+        animateGrid();
+    </script>
+</body>
+</html>
