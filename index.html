@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juanda - Full Stack Web Developer | Laravel & PHP Specialist</title>
-    <meta name="description" content="Portfolio Juanda - Full Stack Web Developer dengan keahlian Laravel, PHP, MySQL. Berpengalaman membangun aplikasi web scalable dan solusi digital inovatif.">
-    <meta name="keywords" content="Web Developer, Laravel Developer, PHP Developer, Full Stack Developer, Portfolio, Juanda">
+    <title>Juanda - Administrative & Web Developer</title>
+    <meta name="description" content="Portfolio Juanda - Profesional Administrasi dengan keahlian pengelolaan dokumen, data, dan dasar pengembangan web. Lulusan Teknik Informatika Universitas Malikussaleh.">
+    <meta name="keywords" content="Administrasi, Staff Administrasi, Web Developer, Data Entry, Microsoft Office, Portfolio, Juanda">
     <meta name="author" content="Juanda">
-    <meta property="og:title" content="Juanda - Full Stack Web Developer">
-    <meta property="og:description" content="Portfolio profesional Web Developer spesialis Laravel & PHP">
+    <meta property="og:title" content="Juanda - Administrative Professional">
+    <meta property="og:description" content="Profesional Administrasi dengan keahlian teknis dan pengembangan web">
     <meta property="og:type" content="website">
     <link rel="icon" type="image/png" href="images.png">
     <style>
@@ -568,7 +568,7 @@
             }
 
             .hero-text h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
 
             .about-block {
@@ -581,6 +581,25 @@
 
             .sertifikasi-card {
                 padding: 24px;
+            }
+
+            .portfolio-header h2,
+            .sertifikasi-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .about-block h3,
+            .sertifikasi-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .contact-item {
+                font-size: 14px;
+                padding: 8px 14px;
+            }
+
+            .desktop-only {
+                display: none;
             }
         }
 
@@ -698,30 +717,12 @@
             object-fit: cover;
         }
 
-        /* Responsive Improvements */
-        @media (max-width: 768px) {
-            .desktop-only {
-                display: none;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-            
-            .portfolio-header h2,
-            .sertifikasi-header h2 {
-                font-size: 2.5rem;
-            }
-            
-            .about-block h3,
-            .sertifikasi-card h3 {
-                font-size: 1.3rem;
-            }
-            
-            .contact-item {
-                font-size: 14px;
-                padding: 8px 14px;
-            }
+        /* Enhanced Button Hover Effects */
+        .hero-cta:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 255, 135, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 255, 135, 0.2);
         }
 
         /* Utility Classes */
@@ -733,14 +734,6 @@
             .desktop-only {
                 display: none;
             }
-        }
-
-        /* Enhanced Button Hover Effects */
-        .hero-cta:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(0, 255, 135, 0.5);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 255, 135, 0.2);
         }
 
         /* Skill Item Enhanced */
@@ -761,6 +754,54 @@
         /* Smooth Scroll Behavior */
         html {
             scroll-behavior: smooth;
+        }
+
+        /* Project Card Image Container */
+        .project-image {
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Project Links Icon */
+        .project-link i {
+            margin-right: 6px;
+        }
+
+        /* Cert Item Icon Styling */
+        .cert-item i {
+            color: #00ff87;
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* About Block List Styling */
+        .about-block ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .about-block ul li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 6px;
+        }
+
+        .about-block ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #00ff87;
+        }
+
+        /* Section Spacing */
+        .section {
+            scroll-margin-top: 80px;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -787,9 +828,9 @@
     <div class="hero-content">
         <div class="hero-text">
             <h1>Juanda</h1>
-            <p class="subtitle">Full Stack Web Developer</p>
+            <p class="subtitle">Administrative Professional & Web Developer</p>
             <p style="color: #aaa; margin-bottom: 24px; font-size: 16px;">
-                Lulusan Teknik Informatika dengan spesialisasi dalam pengembangan aplikasi web modern menggunakan Laravel dan PHP. Berkomitmen menciptakan solusi digital yang scalable, efisien, dan berorientasi pada pengalaman pengguna.
+                Lulusan Teknik Informatika dengan pengalaman sebagai Staf Administrasi dan pemahaman dasar pengembangan web. Terbiasa mengelola dokumen, laporan, dan data secara terstruktur serta memberikan dukungan teknis dalam operasional kantor.
             </p>
 
             <div class="contact-info">
@@ -803,7 +844,7 @@
                 </div>
                 <div class="contact-item">
                     <span class="contact-icon">📍</span>
-                    <span>Aceh, Indonesia</span>
+                    <span>Kutablang, Aceh, Indonesia</span>
                 </div>
             </div>
 
@@ -819,7 +860,7 @@
         </div>
 
         <div class="hero-image">
-            <img src="FOTO JUANDA.jpg" alt="Juanda - Full Stack Web Developer" class="profile-photo">
+            <img src="FOTO JUANDA.jpg" alt="Juanda - Administrative Professional" class="profile-photo">
         </div>
     </div>
 </section>
@@ -833,8 +874,9 @@
             <div class="about-content">
                 <div class="about-block fade-up">
                     <h3>Profil Profesional</h3>
-                    <p>Full Stack Web Developer dengan pengalaman dalam membangun aplikasi web berbasis Laravel dan PHP. Memiliki pemahaman kuat dalam pengembangan sistem backend, manajemen database MySQL, dan integrasi frontend yang responsif.</p>
-                    <p>Berorientasi pada kode yang bersih, terstruktur, dan mudah di-maintain. Mampu bekerja secara mandiri maupun dalam tim kolaboratif, serta berkomitmen untuk terus mengikuti perkembangan teknologi terbaru dalam industri web development.</p>
+                    <p>Lulusan Teknik Informatika dengan pengalaman praktis sebagai Staf Administrasi dan pemahaman dasar pengembangan web. Memiliki kemampuan terorganisir yang baik dalam mengelola dokumen, laporan, dan data secara sistematis.</p>
+                    <p>Terbiasa bekerja dengan Microsoft Office (Word, Excel, PowerPoint), Canva, dan Google Workspace untuk kebutuhan administrasi dan pengolahan data. Memiliki dasar teknis dalam HTML, PHP, dan Python serta mampu memberikan dukungan teknis dasar untuk troubleshooting komputer dan jaringan.</p>
+                    <p>Detail-oriented, bertanggung jawab, dan mampu bekerja secara mandiri maupun dalam tim. Berkomitmen untuk memberikan kontribusi optimal dalam setiap tugas yang dipercayakan.</p>
                 </div>
 
                 <div class="about-block fade-up">
@@ -843,16 +885,21 @@
                         <div>
                             <p style="color: #00ff87; font-weight: 600;">S1 Teknik Informatika</p>
                             <p style="color: #fff;">Universitas Malikussaleh</p>
-                            <p style="color: #888; font-size: 14px;">Lulus 2024</p>
+                            <p style="color: #888; font-size: 14px;">2020 - 2024</p>
+                            <ul style="color: #aaa; font-size: 14px; margin-top: 8px; padding-left: 16px;">
+                                <li>Mempelajari dasar pemrograman, sistem informasi, jaringan komputer, dan manajemen basis data</li>
+                                <li>Terlibat dalam proyek pengembangan aplikasi berbasis web selama perkuliahan</li>
+                            </ul>
                         </div>
                         <div>
-                            <p style="color: #00ff87; font-weight: 600;">Full Stack Web Developer (Freelance)</p>
+                            <p style="color: #00ff87; font-weight: 600;">Freelance Web Developer</p>
                             <p style="color: #fff;">Mandiri</p>
                             <p style="color: #888; font-size: 14px;">September 2024 - Sekarang</p>
                             <ul style="color: #aaa; font-size: 14px; margin-top: 8px; padding-left: 16px;">
-                                <li>Mengembangkan aplikasi web custom untuk klien menggunakan Laravel & PHP</li>
-                                <li>Membangun dan memelihara database MySQL yang efisien</li>
-                                <li>Implementasi fitur RSVP, payment gateway, dan manajemen konten</li>
+                                <li>Mengembangkan website sederhana seperti landing page dan sistem informasi berbasis web</li>
+                                <li>Melakukan analisis kebutuhan klien dan menyesuaikan fitur sesuai permintaan</li>
+                                <li>Melakukan pemeliharaan dan perbaikan website</li>
+                                <li>Berkordinasi dengan klien untuk revisi dan pengembangan fitur</li>
                             </ul>
                         </div>
                         <div>
@@ -860,8 +907,10 @@
                             <p style="color: #fff;">Fotocopy Ayahwa FC</p>
                             <p style="color: #888; font-size: 14px;">April 2025 - Desember 2025</p>
                             <ul style="color: #aaa; font-size: 14px; margin-top: 8px; padding-left: 16px;">
-                                <li>Mengelola administrasi dan dokumentasi dengan teliti</li>
-                                <li>Memberikan layanan pelanggan dan dukungan teknis</li>
+                                <li>Mengelola dan mengarsipkan dokumen serta laporan administrasi secara terstruktur</li>
+                                <li>Bertanggung jawab dalam pencatatan transaksi dan pengelolaan data harian</li>
+                                <li>Membantu proses administrasi dan memastikan kelengkapan dokumen operasional</li>
+                                <li>Melayani pelanggan dengan profesional</li>
                             </ul>
                         </div>
                         <div>
@@ -869,28 +918,41 @@
                             <p style="color: #fff;">PT Perta Arun Gas</p>
                             <p style="color: #888; font-size: 14px;">Juli 2022 - September 2022</p>
                             <ul style="color: #aaa; font-size: 14px; margin-top: 8px; padding-left: 16px;">
-                                <li>Memberikan dukungan teknis dan solusi IT untuk operasional perusahaan</li>
-                                <li>Berkolaborasi dalam tim untuk optimasi sistem internal</li>
+                                <li>Membantu instalasi dan konfigurasi perangkat komputer serta jaringan dasar</li>
+                                <li>Memberikan dukungan teknis (troubleshooting) pada perangkat dan sistem</li>
+                                <li>Mendukung pemeliharaan sistem dan dokumentasi teknis</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="about-block fade-up">
-                    <h3>Keahlian Teknis</h3>
+                    <h3>Keahlian Administrasi</h3>
                     <div class="skills-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
-                        <div class="skill-item" style="background: rgba(0, 255, 135, 0.15); border-color: rgba(0, 255, 135, 0.3);">PHP (Native & Laravel)</div>
-                        <div class="skill-item" style="background: rgba(0, 255, 135, 0.15); border-color: rgba(0, 255, 135, 0.3);">MySQL Database</div>
-                        <div class="skill-item">HTML5 & CSS3</div>
-                        <div class="skill-item">JavaScript</div>
-                        <div class="skill-item">Bootstrap & Tailwind</div>
-                        <div class="skill-item">Git & GitHub</div>
-                        <div class="skill-item">RESTful API</div>
-                        <div class="skill-item">Python (Basic)</div>
-                        <div class="skill-item">Adobe Photoshop</div>
+                        <div class="skill-item" style="background: rgba(0, 255, 135, 0.15); border-color: rgba(0, 255, 135, 0.3);">Microsoft Word</div>
+                        <div class="skill-item" style="background: rgba(0, 255, 135, 0.15); border-color: rgba(0, 255, 135, 0.3);">Microsoft Excel</div>
+                        <div class="skill-item">Microsoft PowerPoint</div>
+                        <div class="skill-item">Google Workspace</div>
                         <div class="skill-item">Canva Design</div>
-                        <div class="skill-item">Microsoft Office</div>
-                        <div class="skill-item">Administrasi Sistem</div>
+                        <div class="skill-item">Pengelolaan Dokumen</div>
+                        <div class="skill-item">Data Entry & Laporan</div>
+                        <div class="skill-item">Administrasi Surat</div>
+                        <div class="skill-item">Pengarsipan</div>
+                        <div class="skill-item">Pelayanan Pelanggan</div>
+                    </div>
+                </div>
+
+                <div class="about-block fade-up">
+                    <h3>Keahlian Teknis</h3>
+                    <div class="skills-grid" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
+                        <div class="skill-item">HTML (Dasar)</div>
+                        <div class="skill-item">PHP (Dasar)</div>
+                        <div class="skill-item">Python (Dasar)</div>
+                        <div class="skill-item">MySQL</div>
+                        <div class="skill-item">Laravel (Dasar)</div>
+                        <div class="skill-item">Troubleshooting Komputer</div>
+                        <div class="skill-item">Instalasi Software</div>
+                        <div class="skill-item">Jaringan Dasar</div>
                     </div>
                 </div>
             </div>
@@ -903,7 +965,7 @@
         <div class="portfolio-header">
             <h2>Portfolio Proyek</h2>
             <p style="color: #aaa; font-size: 18px; max-width: 600px; margin: 16px auto 0;">
-                Beberapa proyek yang telah saya kembangkan dengan fokus pada kualitas kode, performa, dan pengalaman pengguna.
+                Proyek pengembangan web yang telah saya kerjakan dengan fokus pada fungsionalitas dan kemudahan penggunaan.
             </p>
         </div>
 
@@ -915,21 +977,21 @@
                 </div>
                 <div class="project-info">
                     <h3 class="project-title">Platform Undangan Digital & RSVP</h3>
-                    <p class="project-desc">Aplikasi web undangan digital dengan sistem RSVP real-time, galeri foto interaktif, dan dashboard admin untuk manajemen acara. Dirancang untuk memberikan pengalaman pengguna yang seamless dengan performa optimal.</p>
+                    <p class="project-desc">Aplikasi web undangan digital dengan sistem RSVP untuk manajemen tamu acara. Dibangun dengan Laravel dan MySQL, platform ini memungkinkan pengguna untuk membuat undangan digital yang dapat diakses dari berbagai perangkat.</p>
                     <div class="project-tech">
-                        <span class="tech-tag">Laravel 10</span>
+                        <span class="tech-tag">Laravel</span>
                         <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">PHP</span>
                         <span class="tech-tag">JavaScript</span>
                         <span class="tech-tag">Bootstrap</span>
-                        <span class="tech-tag">REST API</span>
                     </div>
                     <div style="margin-bottom: 20px;">
-                        <p style="color: #00ff87; font-size: 14px; font-weight: 600;">Fitur Utama:</p>
+                        <p style="color: #00ff87; font-size: 14px; font-weight: 600;">Fitur:</p>
                         <ul style="color: #aaa; font-size: 14px; padding-left: 16px; margin-top: 8px;">
-                            <li>Sistem RSVP dengan konfirmasi real-time</li>
-                            <li>Dashboard admin untuk manajemen tamu & acara</li>
-                            <li>Galeri foto dengan lazy loading</li>
-                            <li>Responsive design untuk semua device</li>
+                            <li>Sistem RSVP untuk konfirmasi kehadiran tamu</li>
+                            <li>Dashboard admin untuk manajemen acara</li>
+                            <li>Galeri foto untuk dokumentasi</li>
+                            <li>Design responsive untuk mobile dan desktop</li>
                         </ul>
                     </div>
                     <div class="project-links">
@@ -939,64 +1001,13 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="project-card fade-up">
-                <div class="project-image" style="background: linear-gradient(135deg, #1a2a3a, #2a3a4a);">
-                    <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; color: #00ff87;">
-                        <i class="fas fa-database" style="font-size: 48px; margin-bottom: 16px;"></i>
-                        <span style="font-size: 18px; font-weight: 700;">Database Management System</span>
-                    </div>
-                    <div class="project-number">02</div>
-                </div>
-                <div class="project-info">
-                    <h3 class="project-title">Sistem Manajemen Database</h3>
-                    <p class="project-desc">Aplikasi manajemen database untuk pengelolaan data inventaris dan stok barang dengan fitur CRUD lengkap, reporting, dan export data.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">PHP Native</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">HTML/CSS</span>
-                        <span class="tech-tag">jQuery</span>
-                    </div>
-                    <div style="margin-bottom: 20px;">
-                        <p style="color: #00ff87; font-size: 14px; font-weight: 600;">Fitur Utama:</p>
-                        <ul style="color: #aaa; font-size: 14px; padding-left: 16px; margin-top: 8px;">
-                            <li>CRUD operations untuk manajemen inventaris</li>
-                            <li>Report generation dengan filter custom</li>
-                            <li>Export data ke Excel & PDF</li>
-                            <li>User authentication & authorization</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card fade-up">
-                <div class="project-image" style="background: linear-gradient(135deg, #2a1a3a, #3a2a4a);">
-                    <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; color: #60efff;">
-                        <i class="fas fa-chart-line" style="font-size: 48px; margin-bottom: 16px;"></i>
-                        <span style="font-size: 18px; font-weight: 700;">Data Analysis Project</span>
-                    </div>
-                    <div class="project-number">03</div>
-                </div>
-                <div class="project-info">
-                    <h3 class="project-title">Analisis Data & Visualisasi</h3>
-                    <p class="project-desc">Proyek analisis data menggunakan Python dan R untuk pengolahan dataset besar dengan visualisasi interaktif dan insight yang actionable.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">R Language</span>
-                        <span class="tech-tag">Pandas</span>
-                        <span class="tech-tag">Matplotlib</span>
-                    </div>
-                    <div style="margin-bottom: 20px;">
-                        <p style="color: #00ff87; font-size: 14px; font-weight: 600;">Highlight:</p>
-                        <ul style="color: #aaa; font-size: 14px; padding-left: 16px; margin-top: 8px;">
-                            <li>Data cleaning & preprocessing</li>
-                            <li>Statistical analysis & hypothesis testing</li>
-                            <li>Interactive data visualization</li>
-                            <li>Predictive modeling basics</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <!-- Placeholder untuk proyek masa depan -->
+        <div style="text-align: center; margin-top: 60px; padding: 40px; background: rgba(255,255,255,0.02); border-radius: 16px; border: 1px dashed rgba(255,255,255,0.1);">
+            <i class="fas fa-folder-plus" style="font-size: 48px; color: #666; margin-bottom: 16px;"></i>
+            <p style="color: #888; font-size: 16px;">Lebih banyak proyek akan segera ditampilkan</p>
+            <p style="color: #666; font-size: 14px; margin-top: 8px;">Saat ini sedang mengerjakan proyek baru</p>
         </div>
     </div>
 </section>
@@ -1007,51 +1018,35 @@
             <div class="sertifikasi-header">
                 <h2>Sertifikasi & Pelatihan</h2>
                 <p style="color: #aaa; font-size: 18px; max-width: 600px; margin: 16px auto 0;">
-                    Sertifikasi profesional yang mendukung kompetensi dalam pengembangan web dan teknologi.
+                    Sertifikasi profesional yang telah saya selesaikan untuk meningkatkan kompetensi.
                 </p>
             </div>
 
             <div class="sertifikasi-card fade-up">
                 <h3 style="display: flex; align-items: center; gap: 12px;">
                     <i class="fas fa-award" style="font-size: 24px;"></i>
-                    Sertifikasi Backend Development
+                    Teknologi & Pengembangan
                 </h3>
                 <div class="certification-list">
                     <div class="cert-item">
                         <i class="fas fa-code"></i>
                         <div>
                             <span style="display: block; color: #fff; font-weight: 500;">Mini Bootcamp Back End PHP Batch 1</span>
-                            <span style="display: block; color: #888; font-size: 13px;">Pelatihan intensif pengembangan backend dengan PHP & Laravel</span>
+                            <span style="display: block; color: #888; font-size: 13px;">Pelatihan pengembangan backend dengan PHP & Laravel</span>
                         </div>
                     </div>
                     <div class="cert-item">
                         <i class="fas fa-database"></i>
                         <div>
                             <span style="display: block; color: #fff; font-weight: 500;">Guide to Learn SQL with AI – DQLab</span>
-                            <span style="display: block; color: #888; font-size: 13px;">Sertifikasi pengelolaan database SQL dengan AI</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="sertifikasi-card fade-up">
-                <h3 style="display: flex; align-items: center; gap: 12px;">
-                    <i class="fas fa-chart-bar" style="font-size: 24px;"></i>
-                    Data Science & Analytics
-                </h3>
-                <div class="certification-list">
-                    <div class="cert-item">
-                        <i class="fas fa-language"></i>
-                        <div>
-                            <span style="display: block; color: #fff; font-weight: 500;">Guide to Learn R with AI – DQLab</span>
-                            <span style="display: block; color: #888; font-size: 13px;">Analisis data menggunakan bahasa pemrograman R</span>
+                            <span style="display: block; color: #888; font-size: 13px;">Pengelolaan database SQL dengan bantuan AI</span>
                         </div>
                     </div>
                     <div class="cert-item">
                         <i class="fas fa-cloud"></i>
                         <div>
-                            <span style="display: block; color: #fff; font-weight: 500;">Belajar Dasar Cloud dan Generative AI di AWS</span>
-                            <span style="display: block; color: #888; font-size: 13px;">Fundamental cloud computing dan AI di Amazon Web Services</span>
+                            <span style="display: block; color: #fff; font-weight: 500;">Belajar Dasar Cloud dan Gen AI di AWS</span>
+                            <span style="display: block; color: #888; font-size: 13px;">Fundamental cloud computing dan Generative AI di Amazon Web Services</span>
                         </div>
                     </div>
                     <div class="cert-item">
@@ -1067,21 +1062,21 @@
             <div class="sertifikasi-card fade-up">
                 <h3 style="display: flex; align-items: center; gap: 12px;">
                     <i class="fas fa-briefcase" style="font-size: 24px;"></i>
-                    Pengalaman Profesional
+                    Pengalaman & Akademik
                 </h3>
                 <div class="certification-list">
                     <div class="cert-item">
                         <i class="fas fa-certificate"></i>
                         <div>
-                            <span style="display: block; color: #fff; font-weight: 500;">Sertifikat Magang IT – PT Perta Arun Gas</span>
+                            <span style="display: block; color: #fff; font-weight: 500;">Sertifikat Magang – PT Perta Arun Gas</span>
                             <span style="display: block; color: #888; font-size: 13px;">IT Consultant Intern (Juli - September 2022)</span>
                         </div>
                     </div>
                     <div class="cert-item">
                         <i class="fas fa-globe"></i>
                         <div>
-                            <span style="display: block; color: #fff; font-weight: 500;">Sertifikat TOEFL – Universitas Malikussaleh</span>
-                            <span style="display: block; color: #888; font-size: 13px;">Sertifikasi kemampuan bahasa Inggris akademik</span>
+                            <span style="display: block; color: #fff; font-weight: 500;">Sertifikat TOEFL</span>
+                            <span style="display: block; color: #888; font-size: 13px;">Universitas Malikussaleh - Sertifikasi kemampuan bahasa Inggris</span>
                         </div>
                     </div>
                 </div>
@@ -1102,8 +1097,8 @@
             <div class="sertifikasi-card fade-up" style="text-align: center;">
                 <h3 style="color: #00ff87; margin-bottom: 32px;">Mari Bekerja Sama</h3>
                 <p style="color: #ccc; margin-bottom: 32px; font-size: 16px; line-height: 1.8;">
-                    Saya selalu terbuka untuk mendiskusikan proyek pengembangan web, peluang kolaborasi, <br class="desktop-only">
-                    atau kesempatan kerja yang sesuai dengan keahlian saya.
+                    Saya selalu terbuka untuk peluang kerja di bidang administrasi, data entry, <br class="desktop-only">
+                    atau pengembangan web sederhana. Siap berkontribusi dengan keahlian yang saya miliki.
                 </p>
 
                 <div class="contact-info" style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 32px;">
@@ -1117,7 +1112,7 @@
                     </a>
                     <div class="contact-item" style="display: inline-flex; align-items: center; gap: 10px;">
                         <span class="contact-icon">📍</span>
-                        <span>Aceh, Indonesia</span>
+                        <span>Kutablang, Aceh, Indonesia</span>
                     </div>
                 </div>
 
@@ -1125,7 +1120,7 @@
                     <a href="https://github.com/misdirec11" target="_blank" class="hero-cta" style="border-radius: 12px;">
                         <i class="fab fa-github"></i> GitHub
                     </a>
-                    <a href="https://linkedin.com/in/juanda" target="_blank" class="hero-cta" style="border-radius: 12px;">
+                    <a href="https://www.linkedin.com/in/juanda-850465304/" target="_blank" class="hero-cta" style="border-radius: 12px;">
                         <i class="fab fa-linkedin"></i> LinkedIn
                     </a>
                 </div>
@@ -1137,7 +1132,7 @@
     <footer style="background: #050505; padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
         <div class="sertifikasi-container">
             <p style="color: #666; font-size: 14px;">
-                &copy; 2025 Juanda. All rights reserved. | Full Stack Web Developer
+                &copy; 2026 Juanda. All rights reserved. | Administrative & Web Developer
             </p>
         </div>
     </footer>
@@ -1150,24 +1145,27 @@
                 setTimeout(() => {
                     document.getElementById('loading').style.display = 'none';
                 }, 500);
-            }, 1500);
+            }, 1000);
         });
 
-        // Smooth Scrolling
+        // Smooth Scrolling for Navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const navHeight = document.querySelector('.nav-container').offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight - 20;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Active Navigation
+        // Active Navigation Highlight
         const sections = document.querySelectorAll('.section');
         const navLinks = document.querySelectorAll('.nav-pill');
 
@@ -1189,10 +1187,10 @@
             });
         }
 
-        // Scroll Animations
+        // Scroll Animations with Intersection Observer
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -1207,60 +1205,44 @@
             observer.observe(el);
         });
 
-        // Parallax Effect
+        // Update active nav on scroll
         let ticking = false;
-
-        function updateParallax() {
-            const scrolled = window.pageYOffset;
-            
-            // Floating cards parallax
-            document.querySelectorAll('.floating-card').forEach((card, index) => {
-                const speed = 0.5 + (index * 0.2);
-                card.style.transform = `translateY(${scrolled * speed * 0.3}px)`;
-            });
-
-            ticking = false;
-        }
-
         window.addEventListener('scroll', () => {
-            updateActiveNav();
-            
             if (!ticking) {
-                requestAnimationFrame(updateParallax);
+                window.requestAnimationFrame(() => {
+                    updateActiveNav();
+                    ticking = false;
+                });
                 ticking = true;
             }
         });
 
-        // Mouse Movement Effect
-        document.addEventListener('mousemove', (e) => {
-            const cards = document.querySelectorAll('.project-card');
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-
-            cards.forEach(card => {
+        // Mouse Movement Effect on Project Cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
-                const cardX = rect.left + rect.width / 2;
-                const cardY = rect.top + rect.height / 2;
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
                 
-                const deltaX = (mouseX - cardX) * 0.01;
-                const deltaY = (mouseY - cardY) * 0.01;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
                 
-                card.style.transform = `perspective(1000px) rotateX(${deltaY}deg) rotateY(${deltaX}deg) translateZ(0)`;
+                const deltaX = (mouseX - centerX) / centerX;
+                const deltaY = (mouseY - centerY) / centerY;
+                
+                card.style.transform = `perspective(1000px) rotateX(${deltaY * 2}deg) rotateY(${deltaX * 2}deg) translateY(-8px)`;
             });
             
-            // Reset transform when mouse leaves
-            cards.forEach(card => {
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
-                });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
             });
         });
 
-        // Dynamic Background Grid
+        // Dynamic Grid Background Animation
         let gridOffset = 0;
         function animateGrid() {
-            gridOffset += 0.5;
-            document.body.style.backgroundPosition = `${gridOffset}px ${gridOffset}px`;
+            gridOffset += 0.3;
+            const gridElements = document.querySelectorAll('body::before');
             requestAnimationFrame(animateGrid);
         }
         animateGrid();
