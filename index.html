@@ -53,6 +53,9 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50px;
             padding: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .nav-pills {
@@ -76,6 +79,38 @@
             color: #fff;
             background: linear-gradient(135deg, #00ff87, #60efff);
             box-shadow: 0 8px 32px rgba(0, 255, 135, 0.3);
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 4px;
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #888;
+            padding: 8px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #00ff87, #60efff);
+            border-color: transparent;
+            color: #000;
+        }
+
+        .lang-btn:hover {
+            border-color: #00ff87;
+            color: #fff;
         }
 
         /* Asymmetric Layout */
@@ -549,15 +584,25 @@
                 transform: none;
                 border-radius: 20px;
                 padding: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             .nav-pills {
                 justify-content: space-around;
+                flex-wrap: wrap;
             }
 
             .nav-pill {
                 padding: 12px 16px;
                 font-size: 12px;
+            }
+
+            .lang-switcher {
+                margin-left: 0;
+                padding-left: 0;
+                border-left: none;
+                margin-top: 5px;
             }
 
             .hero-content,
@@ -809,150 +854,154 @@
 <body>
     <!-- Loading Screen -->
     <div class="loading-overlay" id="loading">
-        <div class="loading-text">Loading Portfolio...</div>
+        <div class="loading-text" id="loading-text">Loading Portfolio...</div>
     </div>
 
     <!-- Floating Navigation -->
     <nav class="nav-container">
         <div class="nav-pills">
-            <a href="#hero" class="nav-pill active">Beranda</a>
-            <a href="#about" class="nav-pill">Tentang</a>
-            <a href="#portfolio" class="nav-pill">Portfolio</a>
-            <a href="#sertifikasi" class="nav-pill">Sertifikasi</a>
-            <a href="#contact" class="nav-pill">Kontak</a>
+            <a href="#hero" class="nav-pill" data-id="home">Beranda</a>
+            <a href="#about" class="nav-pill" data-id="about">Tentang</a>
+            <a href="#portfolio" class="nav-pill" data-id="portfolio">Portfolio</a>
+            <a href="#sertifikasi" class="nav-pill" data-id="certification">Sertifikasi</a>
+            <a href="#contact" class="nav-pill" data-id="contact">Kontak</a>
+        </div>
+        <div class="lang-switcher">
+            <button class="lang-btn active" id="lang-id">ID</button>
+            <button class="lang-btn" id="lang-en">EN</button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-<section id="hero" class="section hero">
-    <div class="hero-content">
-        <div class="hero-text">
-            <h1>Juanda</h1>
-            <p class="subtitle">Administrative Professional & Web Developer</p>
-            <p style="color: #aaa; margin-bottom: 24px; font-size: 16px;">
-                Lulusan Teknik Informatika dengan pengalaman sebagai Staf Administrasi dan pemahaman dasar pengembangan web. Terbiasa mengelola dokumen, laporan, dan data secara terstruktur serta memberikan dukungan teknis dalam operasional kantor.
-            </p>
+    <section id="hero" class="section hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Juanda</h1>
+                <p class="subtitle" data-i18n="hero.subtitle">Administrative Professional & Web Developer</p>
+                <p style="color: #aaa; margin-bottom: 24px; font-size: 16px;" data-i18n="hero.description">
+                    Lulusan Teknik Informatika dengan pengalaman sebagai Staf Administrasi dan pemahaman dasar pengembangan web. Terbiasa mengelola dokumen, laporan, dan data secara terstruktur serta memberikan dukungan teknis dalam operasional kantor.
+                </p>
 
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span class="contact-icon">📱</span>
-                    <span>+62 812-6349-8942</span>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <span>+62 812-6349-8942</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <span>pjuanda12@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span data-i18n="hero.location">Kutablang, Aceh, Indonesia</span>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <span class="contact-icon">✉️</span>
-                    <span>pjuanda12@gmail.com</span>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-icon">📍</span>
-                    <span>Kutablang, Aceh, Indonesia</span>
+
+                <div style="display: flex; gap: 16px; margin-top: 24px; flex-wrap: wrap;">
+                    <a href="#portfolio" class="hero-cta" style="background: linear-gradient(135deg, #00ff87, #60efff); border: none; color: #000;">
+                        <span data-i18n="hero.cta.portfolio">Lihat Portfolio</span>
+                        <span>→</span>
+                    </a>
+                    <a href="#about" class="hero-cta">
+                        <span data-i18n="hero.cta.about">Tentang Saya</span>
+                    </a>
                 </div>
             </div>
 
-            <div style="display: flex; gap: 16px; margin-top: 24px; flex-wrap: wrap;">
-                <a href="#portfolio" class="hero-cta" style="background: linear-gradient(135deg, #00ff87, #60efff); border: none; color: #000;">
-                    <span>Lihat Portfolio</span>
-                    <span>→</span>
-                </a>
-                <a href="#about" class="hero-cta">
-                    <span>Tentang Saya</span>
-                </a>
+            <div class="hero-image">
+                <img src="FOTO JUANDA.jpg" alt="Juanda - Administrative Professional" class="profile-photo">
             </div>
         </div>
-
-        <div class="hero-image">
-            <img src="FOTO JUANDA.jpg" alt="Juanda - Administrative Professional" class="profile-photo">
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- About Section -->
     <section id="about" class="section about">
         <div class="about-container">
             <div class="about-sidebar">
-                <h2>TENTANG</h2>
+                <h2 data-i18n="about.title">TENTANG</h2>
             </div>
             <div class="about-content">
                 <div class="about-block fade-up">
-                    <h3>Profil Profesional</h3>
-                    <p>Lulusan Teknik Informatika dengan pengalaman praktis sebagai Staf Administrasi dan pemahaman dasar pengembangan web. Memiliki kemampuan terorganisir yang baik dalam mengelola dokumen, laporan, dan data secara sistematis.</p>
-                    <p>Terbiasa bekerja dengan Microsoft Office (Word, Excel, PowerPoint), Canva, dan Google Workspace untuk kebutuhan administrasi dan pengolahan data. Memiliki dasar teknis dalam HTML, PHP, dan Python serta mampu memberikan dukungan teknis dasar untuk troubleshooting komputer dan jaringan.</p>
-                    <p>Detail-oriented, bertanggung jawab, dan mampu bekerja secara mandiri maupun dalam tim. Berkomitmen untuk memberikan kontribusi optimal dalam setiap tugas yang dipercayakan.</p>
+                    <h3 data-i18n="about.profile.title">Profil Profesional</h3>
+                    <p data-i18n="about.profile.p1">Lulusan Teknik Informatika dengan pengalaman praktis sebagai Staf Administrasi dan pemahaman dasar pengembangan web. Memiliki kemampuan terorganisir yang baik dalam mengelola dokumen, laporan, dan data secara sistematis.</p>
+                    <p data-i18n="about.profile.p2">Terbiasa bekerja dengan Microsoft Office (Word, Excel, PowerPoint), Canva, dan Google Workspace untuk kebutuhan administrasi dan pengolahan data. Memiliki dasar teknis dalam HTML, PHP, dan Python serta mampu memberikan dukungan teknis dasar untuk troubleshooting komputer dan jaringan.</p>
+                    <p data-i18n="about.profile.p3">Detail-oriented, bertanggung jawab, dan mampu bekerja secara mandiri maupun dalam tim. Berkomitmen untuk memberikan kontribusi optimal dalam setiap tugas yang dipercayakan.</p>
                 </div>
 
                 <div class="about-block fade-up">
-                    <h3>Pendidikan & Pengalaman</h3>
+                    <h3 data-i18n="about.education.title">Pendidikan & Pengalaman</h3>
                     <div style="display: flex; flex-direction: column; gap: 16px;">
                         <div>
-                            <p style="color: #00ff87; font-weight: 600;">S1 Teknik Informatika</p>
-                            <p style="color: #fff;">Universitas Malikussaleh</p>
-                            <p style="color: #888; font-size: 14px;">2020 - 2024</p>
+                            <p style="color: #00ff87; font-weight: 600;" data-i18n="about.education.s1.degree">S1 Teknik Informatika</p>
+                            <p style="color: #fff;" data-i18n="about.education.s1.school">Universitas Malikussaleh</p>
+                            <p style="color: #888; font-size: 14px;" data-i18n="about.education.s1.year">2020 - 2024</p>
                             <ul style="color: #aaa; font-size: 14px; margin-top: 8px; padding-left: 16px;">
-                                <li>Mempelajari dasar pemrograman, sistem informasi, jaringan komputer, dan manajemen basis data</li>
-                                <li>Terlibat dalam proyek pengembangan aplikasi berbasis web selama perkuliahan</li>
+                                <li data-i18n="about.education.s1.desc1">Mempelajari dasar pemrograman, sistem informasi, jaringan komputer, dan manajemen basis data</li>
+                                <li data-i18n="about.education.s1.desc2">Terlibat dalam proyek pengembangan aplikasi berbasis web selama perkuliahan</li>
                             </ul>
                         </div>
                         <div>
-                            <p style="color: #00ff87; font-weight: 600;">Freelance Web Developer</p>
-                            <p style="color: #fff;">Mandiri</p>
-                            <p style="color: #888; font-size: 14px;">September 2024 - Sekarang</p>
+                            <p style="color: #00ff87; font-weight: 600;" data-i18n="about.education.work1.title">Freelance Web Developer</p>
+                            <p style="color: #fff;" data-i18n="about.education.work1.company">Mandiri</p>
+                            <p style="color: #888; font-size: 14px;" data-i18n="about.education.work1.period">September 2024 - Sekarang</p>
                             <ul style="color: #aaa; font-size: 14px; margin-top: 8px; padding-left: 16px;">
-                                <li>Mengembangkan website sederhana seperti landing page dan sistem informasi berbasis web</li>
-                                <li>Melakukan analisis kebutuhan klien dan menyesuaikan fitur sesuai permintaan</li>
-                                <li>Melakukan pemeliharaan dan perbaikan website</li>
-                                <li>Berkordinasi dengan klien untuk revisi dan pengembangan fitur</li>
+                                <li data-i18n="about.education.work1.desc1">Mengembangkan website sederhana seperti landing page dan sistem informasi berbasis web</li>
+                                <li data-i18n="about.education.work1.desc2">Melakukan analisis kebutuhan klien dan menyesuaikan fitur sesuai permintaan</li>
+                                <li data-i18n="about.education.work1.desc3">Melakukan pemeliharaan dan perbaikan website</li>
+                                <li data-i18n="about.education.work1.desc4">Berkordinasi dengan klien untuk revisi dan pengembangan fitur</li>
                             </ul>
                         </div>
                         <div>
-                            <p style="color: #00ff87; font-weight: 600;">Staf Administrasi</p>
-                            <p style="color: #fff;">Fotocopy Ayahwa FC</p>
-                            <p style="color: #888; font-size: 14px;">April 2025 - Desember 2025</p>
+                            <p style="color: #00ff87; font-weight: 600;" data-i18n="about.education.work2.title">Staf Administrasi</p>
+                            <p style="color: #fff;" data-i18n="about.education.work2.company">Fotocopy Ayahwa FC</p>
+                            <p style="color: #888; font-size: 14px;" data-i18n="about.education.work2.period">April 2025 - Desember 2025</p>
                             <ul style="color: #aaa; font-size: 14px; margin-top: 8px; padding-left: 16px;">
-                                <li>Mengelola dan mengarsipkan dokumen serta laporan administrasi secara terstruktur</li>
-                                <li>Bertanggung jawab dalam pencatatan transaksi dan pengelolaan data harian</li>
-                                <li>Membantu proses administrasi dan memastikan kelengkapan dokumen operasional</li>
-                                <li>Melayani pelanggan dengan profesional</li>
+                                <li data-i18n="about.education.work2.desc1">Mengelola dan mengarsipkan dokumen serta laporan administrasi secara terstruktur</li>
+                                <li data-i18n="about.education.work2.desc2">Bertanggung jawab dalam pencatatan transaksi dan pengelolaan data harian</li>
+                                <li data-i18n="about.education.work2.desc3">Membantu proses administrasi dan memastikan kelengkapan dokumen operasional</li>
+                                <li data-i18n="about.education.work2.desc4">Melayani pelanggan dengan profesional</li>
                             </ul>
                         </div>
                         <div>
-                            <p style="color: #00ff87; font-weight: 600;">IT Consultant Intern</p>
-                            <p style="color: #fff;">PT Perta Arun Gas</p>
-                            <p style="color: #888; font-size: 14px;">Juli 2022 - September 2022</p>
+                            <p style="color: #00ff87; font-weight: 600;" data-i18n="about.education.work3.title">IT Consultant Intern</p>
+                            <p style="color: #fff;" data-i18n="about.education.work3.company">PT Perta Arun Gas</p>
+                            <p style="color: #888; font-size: 14px;" data-i18n="about.education.work3.period">Juli 2022 - September 2022</p>
                             <ul style="color: #aaa; font-size: 14px; margin-top: 8px; padding-left: 16px;">
-                                <li>Membantu instalasi dan konfigurasi perangkat komputer serta jaringan dasar</li>
-                                <li>Memberikan dukungan teknis (troubleshooting) pada perangkat dan sistem</li>
-                                <li>Mendukung pemeliharaan sistem dan dokumentasi teknis</li>
+                                <li data-i18n="about.education.work3.desc1">Membantu instalasi dan konfigurasi perangkat komputer serta jaringan dasar</li>
+                                <li data-i18n="about.education.work3.desc2">Memberikan dukungan teknis (troubleshooting) pada perangkat dan sistem</li>
+                                <li data-i18n="about.education.work3.desc3">Mendukung pemeliharaan sistem dan dokumentasi teknis</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="about-block fade-up">
-                    <h3>Keahlian Administrasi</h3>
+                    <h3 data-i18n="about.skills.admin.title">Keahlian Administrasi</h3>
                     <div class="skills-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
-                        <div class="skill-item" style="background: rgba(0, 255, 135, 0.15); border-color: rgba(0, 255, 135, 0.3);">Microsoft Word</div>
-                        <div class="skill-item" style="background: rgba(0, 255, 135, 0.15); border-color: rgba(0, 255, 135, 0.3);">Microsoft Excel</div>
-                        <div class="skill-item">Microsoft PowerPoint</div>
-                        <div class="skill-item">Google Workspace</div>
-                        <div class="skill-item">Canva Design</div>
-                        <div class="skill-item">Pengelolaan Dokumen</div>
-                        <div class="skill-item">Data Entry & Laporan</div>
-                        <div class="skill-item">Administrasi Surat</div>
-                        <div class="skill-item">Pengarsipan</div>
-                        <div class="skill-item">Pelayanan Pelanggan</div>
+                        <div class="skill-item" style="background: rgba(0, 255, 135, 0.15); border-color: rgba(0, 255, 135, 0.3);" data-i18n="about.skills.admin.word">Microsoft Word</div>
+                        <div class="skill-item" style="background: rgba(0, 255, 135, 0.15); border-color: rgba(0, 255, 135, 0.3);" data-i18n="about.skills.admin.excel">Microsoft Excel</div>
+                        <div class="skill-item" data-i18n="about.skills.admin.powerpoint">Microsoft PowerPoint</div>
+                        <div class="skill-item" data-i18n="about.skills.admin.gsuite">Google Workspace</div>
+                        <div class="skill-item" data-i18n="about.skills.admin.canva">Canva Design</div>
+                        <div class="skill-item" data-i18n="about.skills.admin.document">Pengelolaan Dokumen</div>
+                        <div class="skill-item" data-i18n="about.skills.admin.data">Data Entry & Laporan</div>
+                        <div class="skill-item" data-i18n="about.skills.admin.letter">Administrasi Surat</div>
+                        <div class="skill-item" data-i18n="about.skills.admin.filing">Pengarsipan</div>
+                        <div class="skill-item" data-i18n="about.skills.admin.service">Pelayanan Pelanggan</div>
                     </div>
                 </div>
 
                 <div class="about-block fade-up">
-                    <h3>Keahlian Teknis</h3>
+                    <h3 data-i18n="about.skills.technical.title">Keahlian Teknis</h3>
                     <div class="skills-grid" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
-                        <div class="skill-item">HTML (Dasar)</div>
-                        <div class="skill-item">PHP (Dasar)</div>
-                        <div class="skill-item">Python (Dasar)</div>
-                        <div class="skill-item">MySQL</div>
-                        <div class="skill-item">Laravel (Dasar)</div>
-                        <div class="skill-item">Troubleshooting Komputer</div>
-                        <div class="skill-item">Instalasi Software</div>
-                        <div class="skill-item">Jaringan Dasar</div>
+                        <div class="skill-item" data-i18n="about.skills.technical.html">HTML (Dasar)</div>
+                        <div class="skill-item" data-i18n="about.skills.technical.php">PHP (Dasar)</div>
+                        <div class="skill-item" data-i18n="about.skills.technical.python">Python (Dasar)</div>
+                        <div class="skill-item" data-i18n="about.skills.technical.mysql">MySQL</div>
+                        <div class="skill-item" data-i18n="about.skills.technical.laravel">Laravel (Dasar)</div>
+                        <div class="skill-item" data-i18n="about.skills.technical.troubleshooting">Troubleshooting Komputer</div>
+                        <div class="skill-item" data-i18n="about.skills.technical.software">Instalasi Software</div>
+                        <div class="skill-item" data-i18n="about.skills.technical.network">Jaringan Dasar</div>
                     </div>
                 </div>
             </div>
@@ -960,64 +1009,64 @@
     </section>
 
    <!-- Portfolio Section -->
-<section id="portfolio" class="portfolio section">
-    <div class="portfolio-container">
-        <div class="portfolio-header">
-            <h2>Portfolio Proyek</h2>
-            <p style="color: #aaa; font-size: 18px; max-width: 600px; margin: 16px auto 0;">
-                Proyek pengembangan web yang telah saya kerjakan dengan fokus pada fungsionalitas dan kemudahan penggunaan.
-            </p>
-        </div>
+    <section id="portfolio" class="portfolio section">
+        <div class="portfolio-container">
+            <div class="portfolio-header">
+                <h2 data-i18n="portfolio.title">Portfolio Proyek</h2>
+                <p style="color: #aaa; font-size: 18px; max-width: 600px; margin: 16px auto 0;" data-i18n="portfolio.subtitle">
+                    Proyek pengembangan web yang telah saya kerjakan dengan fokus pada fungsionalitas dan kemudahan penggunaan.
+                </p>
+            </div>
 
-        <div class="portfolio-grid">
-            <div class="project-card fade-up">
-                <div class="project-image">
-                    <img src="images.png" alt="Website Undangan Digital - Platform RSVP Online" class="project-bg-image" style="width: 100%; height: 100%; object-fit: cover;">
-                    <div class="project-number">01</div>
-                </div>
-                <div class="project-info">
-                    <h3 class="project-title">Platform Undangan Digital & RSVP</h3>
-                    <p class="project-desc">Aplikasi web undangan digital dengan sistem RSVP untuk manajemen tamu acara. Dibangun dengan Laravel dan MySQL, platform ini memungkinkan pengguna untuk membuat undangan digital yang dapat diakses dari berbagai perangkat.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Laravel</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">PHP</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Bootstrap</span>
+            <div class="portfolio-grid">
+                <div class="project-card fade-up">
+                    <div class="project-image">
+                        <img src="images.png" alt="Website Undangan Digital - Platform RSVP Online" class="project-bg-image" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="project-number">01</div>
                     </div>
-                    <div style="margin-bottom: 20px;">
-                        <p style="color: #00ff87; font-size: 14px; font-weight: 600;">Fitur:</p>
-                        <ul style="color: #aaa; font-size: 14px; padding-left: 16px; margin-top: 8px;">
-                            <li>Sistem RSVP untuk konfirmasi kehadiran tamu</li>
-                            <li>Dashboard admin untuk manajemen acara</li>
-                            <li>Galeri foto untuk dokumentasi</li>
-                            <li>Design responsive untuk mobile dan desktop</li>
-                        </ul>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://www.listundangan.my.id/" target="_blank" class="project-link">
-                            <i class="fas fa-external-link-alt"></i> Kunjungi Website
-                        </a>
+                    <div class="project-info">
+                        <h3 class="project-title" data-i18n="portfolio.project1.title">Platform Undangan Digital & RSVP</h3>
+                        <p class="project-desc" data-i18n="portfolio.project1.desc">Aplikasi web undangan digital dengan sistem RSVP untuk manajemen tamu acara. Dibangun dengan Laravel dan MySQL, platform ini memungkinkan pengguna untuk membuat undangan digital yang dapat diakses dari berbagai perangkat.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <p style="color: #00ff87; font-size: 14px; font-weight: 600;" data-i18n="portfolio.project1.features.title">Fitur:</p>
+                            <ul style="color: #aaa; font-size: 14px; padding-left: 16px; margin-top: 8px;">
+                                <li data-i18n="portfolio.project1.features.item1">Sistem RSVP untuk konfirmasi kehadiran tamu</li>
+                                <li data-i18n="portfolio.project1.features.item2">Dashboard admin untuk manajemen acara</li>
+                                <li data-i18n="portfolio.project1.features.item3">Galeri foto untuk dokumentasi</li>
+                                <li data-i18n="portfolio.project1.features.item4">Design responsive untuk mobile dan desktop</li>
+                            </ul>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.listundangan.my.id/" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> <span data-i18n="portfolio.project1.link">Kunjungi Website</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Placeholder untuk proyek masa depan -->
-        <div style="text-align: center; margin-top: 60px; padding: 40px; background: rgba(255,255,255,0.02); border-radius: 16px; border: 1px dashed rgba(255,255,255,0.1);">
-            <i class="fas fa-folder-plus" style="font-size: 48px; color: #666; margin-bottom: 16px;"></i>
-            <p style="color: #888; font-size: 16px;">Lebih banyak proyek akan segera ditampilkan</p>
-            <p style="color: #666; font-size: 14px; margin-top: 8px;">Saat ini sedang mengerjakan proyek baru</p>
+            <!-- Placeholder untuk proyek masa depan -->
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: rgba(255,255,255,0.02); border-radius: 16px; border: 1px dashed rgba(255,255,255,0.1);">
+                <i class="fas fa-folder-plus" style="font-size: 48px; color: #666; margin-bottom: 16px;"></i>
+                <p style="color: #888; font-size: 16px;" data-i18n="portfolio.placeholder.title">Lebih banyak proyek akan segera ditampilkan</p>
+                <p style="color: #666; font-size: 14px; margin-top: 8px;" data-i18n="portfolio.placeholder.subtitle">Saat ini sedang mengerjakan proyek baru</p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Sertifikasi Section -->
     <section id="sertifikasi" class="sertifikasi section">
         <div class="sertifikasi-container">
             <div class="sertifikasi-header">
-                <h2>Sertifikasi & Pelatihan</h2>
-                <p style="color: #aaa; font-size: 18px; max-width: 600px; margin: 16px auto 0;">
+                <h2 data-i18n="certification.title">Sertifikasi & Pelatihan</h2>
+                <p style="color: #aaa; font-size: 18px; max-width: 600px; margin: 16px auto 0;" data-i18n="certification.subtitle">
                     Sertifikasi profesional yang telah saya selesaikan untuk meningkatkan kompetensi.
                 </p>
             </div>
@@ -1025,35 +1074,35 @@
             <div class="sertifikasi-card fade-up">
                 <h3 style="display: flex; align-items: center; gap: 12px;">
                     <i class="fas fa-award" style="font-size: 24px;"></i>
-                    Teknologi & Pengembangan
+                    <span data-i18n="certification.tech.title">Teknologi & Pengembangan</span>
                 </h3>
                 <div class="certification-list">
                     <div class="cert-item">
                         <i class="fas fa-code"></i>
                         <div>
-                            <span style="display: block; color: #fff; font-weight: 500;">Mini Bootcamp Back End PHP Batch 1</span>
-                            <span style="display: block; color: #888; font-size: 13px;">Pelatihan pengembangan backend dengan PHP & Laravel</span>
+                            <span style="display: block; color: #fff; font-weight: 500;" data-i18n="certification.tech.item1.title">Mini Bootcamp Back End PHP Batch 1</span>
+                            <span style="display: block; color: #888; font-size: 13px;" data-i18n="certification.tech.item1.desc">Pelatihan pengembangan backend dengan PHP & Laravel</span>
                         </div>
                     </div>
                     <div class="cert-item">
                         <i class="fas fa-database"></i>
                         <div>
-                            <span style="display: block; color: #fff; font-weight: 500;">Guide to Learn SQL with AI – DQLab</span>
-                            <span style="display: block; color: #888; font-size: 13px;">Pengelolaan database SQL dengan bantuan AI</span>
+                            <span style="display: block; color: #fff; font-weight: 500;" data-i18n="certification.tech.item2.title">Guide to Learn SQL with AI – DQLab</span>
+                            <span style="display: block; color: #888; font-size: 13px;" data-i18n="certification.tech.item2.desc">Pengelolaan database SQL dengan bantuan AI</span>
                         </div>
                     </div>
                     <div class="cert-item">
                         <i class="fas fa-cloud"></i>
                         <div>
-                            <span style="display: block; color: #fff; font-weight: 500;">Belajar Dasar Cloud dan Gen AI di AWS</span>
-                            <span style="display: block; color: #888; font-size: 13px;">Fundamental cloud computing dan Generative AI di Amazon Web Services</span>
+                            <span style="display: block; color: #fff; font-weight: 500;" data-i18n="certification.tech.item3.title">Belajar Dasar Cloud dan Gen AI di AWS</span>
+                            <span style="display: block; color: #888; font-size: 13px;" data-i18n="certification.tech.item3.desc">Fundamental cloud computing dan Generative AI di Amazon Web Services</span>
                         </div>
                     </div>
                     <div class="cert-item">
                         <i class="fas fa-brain"></i>
                         <div>
-                            <span style="display: block; color: #fff; font-weight: 500;">Belajar Dasar Artificial Intelligence (AI)</span>
-                            <span style="display: block; color: #888; font-size: 13px;">Fundamental kecerdasan buatan dan machine learning</span>
+                            <span style="display: block; color: #fff; font-weight: 500;" data-i18n="certification.tech.item4.title">Belajar Dasar Artificial Intelligence (AI)</span>
+                            <span style="display: block; color: #888; font-size: 13px;" data-i18n="certification.tech.item4.desc">Fundamental kecerdasan buatan dan machine learning</span>
                         </div>
                     </div>
                 </div>
@@ -1062,21 +1111,21 @@
             <div class="sertifikasi-card fade-up">
                 <h3 style="display: flex; align-items: center; gap: 12px;">
                     <i class="fas fa-briefcase" style="font-size: 24px;"></i>
-                    Pengalaman & Akademik
+                    <span data-i18n="certification.experience.title">Pengalaman & Akademik</span>
                 </h3>
                 <div class="certification-list">
                     <div class="cert-item">
                         <i class="fas fa-certificate"></i>
                         <div>
-                            <span style="display: block; color: #fff; font-weight: 500;">Sertifikat Magang – PT Perta Arun Gas</span>
-                            <span style="display: block; color: #888; font-size: 13px;">IT Consultant Intern (Juli - September 2022)</span>
+                            <span style="display: block; color: #fff; font-weight: 500;" data-i18n="certification.experience.item1.title">Sertifikat Magang – PT Perta Arun Gas</span>
+                            <span style="display: block; color: #888; font-size: 13px;" data-i18n="certification.experience.item1.desc">IT Consultant Intern (Juli - September 2022)</span>
                         </div>
                     </div>
                     <div class="cert-item">
                         <i class="fas fa-globe"></i>
                         <div>
-                            <span style="display: block; color: #fff; font-weight: 500;">Sertifikat TOEFL</span>
-                            <span style="display: block; color: #888; font-size: 13px;">Universitas Malikussaleh - Sertifikasi kemampuan bahasa Inggris</span>
+                            <span style="display: block; color: #fff; font-weight: 500;" data-i18n="certification.experience.item2.title">Sertifikat TOEFL</span>
+                            <span style="display: block; color: #888; font-size: 13px;" data-i18n="certification.experience.item2.desc">Universitas Malikussaleh - Sertifikasi kemampuan bahasa Inggris</span>
                         </div>
                     </div>
                 </div>
@@ -1088,15 +1137,15 @@
     <section id="contact" class="section" style="background: linear-gradient(135deg, #0a0a0a 0%, #0f1a15 100%); padding: 120px 0;">
         <div class="sertifikasi-container">
             <div class="sertifikasi-header">
-                <h2>Hubungi Saya</h2>
-                <p style="color: #aaa; font-size: 18px; max-width: 600px; margin: 16px auto 0;">
+                <h2 data-i18n="contact.title">Hubungi Saya</h2>
+                <p style="color: #aaa; font-size: 18px; max-width: 600px; margin: 16px auto 0;" data-i18n="contact.subtitle">
                     Tertarik untuk berkolaborasi atau memiliki pertanyaan? Jangan ragu untuk menghubungi saya.
                 </p>
             </div>
 
             <div class="sertifikasi-card fade-up" style="text-align: center;">
-                <h3 style="color: #00ff87; margin-bottom: 32px;">Mari Bekerja Sama</h3>
-                <p style="color: #ccc; margin-bottom: 32px; font-size: 16px; line-height: 1.8;">
+                <h3 style="color: #00ff87; margin-bottom: 32px;" data-i18n="contact.card.title">Mari Bekerja Sama</h3>
+                <p style="color: #ccc; margin-bottom: 32px; font-size: 16px; line-height: 1.8;" data-i18n="contact.card.description">
                     Saya selalu terbuka untuk peluang kerja di bidang administrasi, data entry, <br class="desktop-only">
                     atau pengembangan web sederhana. Siap berkontribusi dengan keahlian yang saya miliki.
                 </p>
@@ -1108,11 +1157,11 @@
                     </a>
                     <a href="https://wa.me/6281263498942" target="_blank" class="contact-item" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
                         <span class="contact-icon">💬</span>
-                        <span>+62 812-6349-8942 (WhatsApp)</span>
+                        <span data-i18n="contact.card.phone">+62 812-6349-8942 (WhatsApp)</span>
                     </a>
                     <div class="contact-item" style="display: inline-flex; align-items: center; gap: 10px;">
                         <span class="contact-icon">📍</span>
-                        <span>Kutablang, Aceh, Indonesia</span>
+                        <span data-i18n="contact.card.location">Kutablang, Aceh, Indonesia</span>
                     </div>
                 </div>
 
@@ -1131,7 +1180,7 @@
     <!-- Footer -->
     <footer style="background: #050505; padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
         <div class="sertifikasi-container">
-            <p style="color: #666; font-size: 14px;">
+            <p style="color: #666; font-size: 14px;" data-i18n="footer.copyright">
                 &copy; 2026 Juanda. All rights reserved. | Administrative & Web Developer
             </p>
         </div>
@@ -1238,14 +1287,293 @@
             });
         });
 
-        // Dynamic Grid Background Animation
-        let gridOffset = 0;
-        function animateGrid() {
-            gridOffset += 0.3;
-            const gridElements = document.querySelectorAll('body::before');
-            requestAnimationFrame(animateGrid);
+        // Language translations
+        const translations = {
+            id: {
+                // Navigation
+                'home': 'Beranda',
+                'about': 'Tentang',
+                'portfolio': 'Portfolio',
+                'certification': 'Sertifikasi',
+                'contact': 'Kontak',
+                
+                // Loading
+                'loading-text': 'Memuat Portfolio...',
+                
+                // Hero
+                'hero.subtitle': 'Administrative Professional & Web Developer',
+                'hero.description': 'Lulusan Teknik Informatika dengan pengalaman sebagai Staf Administrasi dan pemahaman dasar pengembangan web. Terbiasa mengelola dokumen, laporan, dan data secara terstruktur serta memberikan dukungan teknis dalam operasional kantor.',
+                'hero.location': 'Kutablang, Aceh, Indonesia',
+                'hero.cta.portfolio': 'Lihat Portfolio',
+                'hero.cta.about': 'Tentang Saya',
+                
+                // About
+                'about.title': 'TENTANG',
+                'about.profile.title': 'Profil Profesional',
+                'about.profile.p1': 'Lulusan Teknik Informatika dengan pengalaman praktis sebagai Staf Administrasi dan pemahaman dasar pengembangan web. Memiliki kemampuan terorganisir yang baik dalam mengelola dokumen, laporan, dan data secara sistematis.',
+                'about.profile.p2': 'Terbiasa bekerja dengan Microsoft Office (Word, Excel, PowerPoint), Canva, dan Google Workspace untuk kebutuhan administrasi dan pengolahan data. Memiliki dasar teknis dalam HTML, PHP, dan Python serta mampu memberikan dukungan teknis dasar untuk troubleshooting komputer dan jaringan.',
+                'about.profile.p3': 'Detail-oriented, bertanggung jawab, dan mampu bekerja secara mandiri maupun dalam tim. Berkomitmen untuk memberikan kontribusi optimal dalam setiap tugas yang dipercayakan.',
+                
+                'about.education.title': 'Pendidikan & Pengalaman',
+                'about.education.s1.degree': 'S1 Teknik Informatika',
+                'about.education.s1.school': 'Universitas Malikussaleh',
+                'about.education.s1.year': '2020 - 2024',
+                'about.education.s1.desc1': 'Mempelajari dasar pemrograman, sistem informasi, jaringan komputer, dan manajemen basis data',
+                'about.education.s1.desc2': 'Terlibat dalam proyek pengembangan aplikasi berbasis web selama perkuliahan',
+                
+                'about.education.work1.title': 'Freelance Web Developer',
+                'about.education.work1.company': 'Mandiri',
+                'about.education.work1.period': 'September 2024 - Sekarang',
+                'about.education.work1.desc1': 'Mengembangkan website sederhana seperti landing page dan sistem informasi berbasis web',
+                'about.education.work1.desc2': 'Melakukan analisis kebutuhan klien dan menyesuaikan fitur sesuai permintaan',
+                'about.education.work1.desc3': 'Melakukan pemeliharaan dan perbaikan website',
+                'about.education.work1.desc4': 'Berkordinasi dengan klien untuk revisi dan pengembangan fitur',
+                
+                'about.education.work2.title': 'Staf Administrasi',
+                'about.education.work2.company': 'Fotocopy Ayahwa FC',
+                'about.education.work2.period': 'April 2025 - Desember 2025',
+                'about.education.work2.desc1': 'Mengelola dan mengarsipkan dokumen serta laporan administrasi secara terstruktur',
+                'about.education.work2.desc2': 'Bertanggung jawab dalam pencatatan transaksi dan pengelolaan data harian',
+                'about.education.work2.desc3': 'Membantu proses administrasi dan memastikan kelengkapan dokumen operasional',
+                'about.education.work2.desc4': 'Melayani pelanggan dengan profesional',
+                
+                'about.education.work3.title': 'IT Consultant Intern',
+                'about.education.work3.company': 'PT Perta Arun Gas',
+                'about.education.work3.period': 'Juli 2022 - September 2022',
+                'about.education.work3.desc1': 'Membantu instalasi dan konfigurasi perangkat komputer serta jaringan dasar',
+                'about.education.work3.desc2': 'Memberikan dukungan teknis (troubleshooting) pada perangkat dan sistem',
+                'about.education.work3.desc3': 'Mendukung pemeliharaan sistem dan dokumentasi teknis',
+                
+                'about.skills.admin.title': 'Keahlian Administrasi',
+                'about.skills.admin.word': 'Microsoft Word',
+                'about.skills.admin.excel': 'Microsoft Excel',
+                'about.skills.admin.powerpoint': 'Microsoft PowerPoint',
+                'about.skills.admin.gsuite': 'Google Workspace',
+                'about.skills.admin.canva': 'Canva Design',
+                'about.skills.admin.document': 'Pengelolaan Dokumen',
+                'about.skills.admin.data': 'Data Entry & Laporan',
+                'about.skills.admin.letter': 'Administrasi Surat',
+                'about.skills.admin.filing': 'Pengarsipan',
+                'about.skills.admin.service': 'Pelayanan Pelanggan',
+                
+                'about.skills.technical.title': 'Keahlian Teknis',
+                'about.skills.technical.html': 'HTML (Dasar)',
+                'about.skills.technical.php': 'PHP (Dasar)',
+                'about.skills.technical.python': 'Python (Dasar)',
+                'about.skills.technical.mysql': 'MySQL',
+                'about.skills.technical.laravel': 'Laravel (Dasar)',
+                'about.skills.technical.troubleshooting': 'Troubleshooting Komputer',
+                'about.skills.technical.software': 'Instalasi Software',
+                'about.skills.technical.network': 'Jaringan Dasar',
+                
+                // Portfolio
+                'portfolio.title': 'Portfolio Proyek',
+                'portfolio.subtitle': 'Proyek pengembangan web yang telah saya kerjakan dengan fokus pada fungsionalitas dan kemudahan penggunaan.',
+                'portfolio.project1.title': 'Platform Undangan Digital & RSVP',
+                'portfolio.project1.desc': 'Aplikasi web undangan digital dengan sistem RSVP untuk manajemen tamu acara. Dibangun dengan Laravel dan MySQL, platform ini memungkinkan pengguna untuk membuat undangan digital yang dapat diakses dari berbagai perangkat.',
+                'portfolio.project1.features.title': 'Fitur:',
+                'portfolio.project1.features.item1': 'Sistem RSVP untuk konfirmasi kehadiran tamu',
+                'portfolio.project1.features.item2': 'Dashboard admin untuk manajemen acara',
+                'portfolio.project1.features.item3': 'Galeri foto untuk dokumentasi',
+                'portfolio.project1.features.item4': 'Design responsive untuk mobile dan desktop',
+                'portfolio.project1.link': 'Kunjungi Website',
+                'portfolio.placeholder.title': 'Lebih banyak proyek akan segera ditampilkan',
+                'portfolio.placeholder.subtitle': 'Saat ini sedang mengerjakan proyek baru',
+                
+                // Certification
+                'certification.title': 'Sertifikasi & Pelatihan',
+                'certification.subtitle': 'Sertifikasi profesional yang telah saya selesaikan untuk meningkatkan kompetensi.',
+                'certification.tech.title': 'Teknologi & Pengembangan',
+                'certification.tech.item1.title': 'Mini Bootcamp Back End PHP Batch 1',
+                'certification.tech.item1.desc': 'Pelatihan pengembangan backend dengan PHP & Laravel',
+                'certification.tech.item2.title': 'Guide to Learn SQL with AI – DQLab',
+                'certification.tech.item2.desc': 'Pengelolaan database SQL dengan bantuan AI',
+                'certification.tech.item3.title': 'Belajar Dasar Cloud dan Gen AI di AWS',
+                'certification.tech.item3.desc': 'Fundamental cloud computing dan Generative AI di Amazon Web Services',
+                'certification.tech.item4.title': 'Belajar Dasar Artificial Intelligence (AI)',
+                'certification.tech.item4.desc': 'Fundamental kecerdasan buatan dan machine learning',
+                'certification.experience.title': 'Pengalaman & Akademik',
+                'certification.experience.item1.title': 'Sertifikat Magang – PT Perta Arun Gas',
+                'certification.experience.item1.desc': 'IT Consultant Intern (Juli - September 2022)',
+                'certification.experience.item2.title': 'Sertifikat TOEFL',
+                'certification.experience.item2.desc': 'Universitas Malikussaleh - Sertifikasi kemampuan bahasa Inggris',
+                
+                // Contact
+                'contact.title': 'Hubungi Saya',
+                'contact.subtitle': 'Tertarik untuk berkolaborasi atau memiliki pertanyaan? Jangan ragu untuk menghubungi saya.',
+                'contact.card.title': 'Mari Bekerja Sama',
+                'contact.card.description': 'Saya selalu terbuka untuk peluang kerja di bidang administrasi, data entry, <br class="desktop-only"> atau pengembangan web sederhana. Siap berkontribusi dengan keahlian yang saya miliki.',
+                'contact.card.phone': '+62 812-6349-8942 (WhatsApp)',
+                'contact.card.location': 'Kutablang, Aceh, Indonesia',
+                
+                // Footer
+                'footer.copyright': '© 2026 Juanda. All rights reserved. | Administrative & Web Developer'
+            },
+            en: {
+                // Navigation
+                'home': 'Home',
+                'about': 'About',
+                'portfolio': 'Portfolio',
+                'certification': 'Certification',
+                'contact': 'Contact',
+                
+                // Loading
+                'loading-text': 'Loading Portfolio...',
+                
+                // Hero
+                'hero.subtitle': 'Administrative Professional & Web Developer',
+                'hero.description': 'Informatics Engineering graduate with experience as Administrative Staff and basic understanding of web development. Accustomed to managing documents, reports, and data in a structured manner and providing technical support in office operations.',
+                'hero.location': 'Kutablang, Aceh, Indonesia',
+                'hero.cta.portfolio': 'View Portfolio',
+                'hero.cta.about': 'About Me',
+                
+                // About
+                'about.title': 'ABOUT',
+                'about.profile.title': 'Professional Profile',
+                'about.profile.p1': 'Informatics Engineering graduate with practical experience as Administrative Staff and basic understanding of web development. Has good organizational skills in managing documents, reports, and data systematically.',
+                'about.profile.p2': 'Accustomed to working with Microsoft Office (Word, Excel, PowerPoint), Canva, and Google Workspace for administrative needs and data processing. Has technical basics in HTML, PHP, and Python and can provide basic technical support for computer and network troubleshooting.',
+                'about.profile.p3': 'Detail-oriented, responsible, and able to work independently or in a team. Committed to providing optimal contribution in every assigned task.',
+                
+                'about.education.title': 'Education & Experience',
+                'about.education.s1.degree': 'Bachelor of Informatics Engineering',
+                'about.education.s1.school': 'Universitas Malikussaleh',
+                'about.education.s1.year': '2020 - 2024',
+                'about.education.s1.desc1': 'Studied programming basics, information systems, computer networks, and database management',
+                'about.education.s1.desc2': 'Involved in web-based application development projects during college',
+                
+                'about.education.work1.title': 'Freelance Web Developer',
+                'about.education.work1.company': 'Self-employed',
+                'about.education.work1.period': 'September 2024 - Present',
+                'about.education.work1.desc1': 'Develop simple websites such as landing pages and web-based information systems',
+                'about.education.work1.desc2': 'Analyze client needs and adjust features according to requests',
+                'about.education.work1.desc3': 'Perform website maintenance and repairs',
+                'about.education.work1.desc4': 'Coordinate with clients for revisions and feature development',
+                
+                'about.education.work2.title': 'Administrative Staff',
+                'about.education.work2.company': 'Ayahwa FC Photocopy',
+                'about.education.work2.period': 'April 2025 - December 2025',
+                'about.education.work2.desc1': 'Manage and archive documents and administrative reports in a structured manner',
+                'about.education.work2.desc2': 'Responsible for transaction recording and daily data management',
+                'about.education.work2.desc3': 'Assist administrative processes and ensure completeness of operational documents',
+                'about.education.work2.desc4': 'Serve customers professionally',
+                
+                'about.education.work3.title': 'IT Consultant Intern',
+                'about.education.work3.company': 'PT Perta Arun Gas',
+                'about.education.work3.period': 'July 2022 - September 2022',
+                'about.education.work3.desc1': 'Assist installation and configuration of computer devices and basic networks',
+                'about.education.work3.desc2': 'Provide technical support (troubleshooting) for devices and systems',
+                'about.education.work3.desc3': 'Support system maintenance and technical documentation',
+                
+                'about.skills.admin.title': 'Administrative Skills',
+                'about.skills.admin.word': 'Microsoft Word',
+                'about.skills.admin.excel': 'Microsoft Excel',
+                'about.skills.admin.powerpoint': 'Microsoft PowerPoint',
+                'about.skills.admin.gsuite': 'Google Workspace',
+                'about.skills.admin.canva': 'Canva Design',
+                'about.skills.admin.document': 'Document Management',
+                'about.skills.admin.data': 'Data Entry & Reports',
+                'about.skills.admin.letter': 'Letter Administration',
+                'about.skills.admin.filing': 'Filing',
+                'about.skills.admin.service': 'Customer Service',
+                
+                'about.skills.technical.title': 'Technical Skills',
+                'about.skills.technical.html': 'HTML (Basic)',
+                'about.skills.technical.php': 'PHP (Basic)',
+                'about.skills.technical.python': 'Python (Basic)',
+                'about.skills.technical.mysql': 'MySQL',
+                'about.skills.technical.laravel': 'Laravel (Basic)',
+                'about.skills.technical.troubleshooting': 'Computer Troubleshooting',
+                'about.skills.technical.software': 'Software Installation',
+                'about.skills.technical.network': 'Basic Networking',
+                
+                // Portfolio
+                'portfolio.title': 'Project Portfolio',
+                'portfolio.subtitle': 'Web development projects I have worked on with a focus on functionality and ease of use.',
+                'portfolio.project1.title': 'Digital Invitation & RSVP Platform',
+                'portfolio.project1.desc': 'Digital invitation web application with RSVP system for event guest management. Built with Laravel and MySQL, this platform allows users to create digital invitations accessible from various devices.',
+                'portfolio.project1.features.title': 'Features:',
+                'portfolio.project1.features.item1': 'RSVP system for guest attendance confirmation',
+                'portfolio.project1.features.item2': 'Admin dashboard for event management',
+                'portfolio.project1.features.item3': 'Photo gallery for documentation',
+                'portfolio.project1.features.item4': 'Responsive design for mobile and desktop',
+                'portfolio.project1.link': 'Visit Website',
+                'portfolio.placeholder.title': 'More projects will be displayed soon',
+                'portfolio.placeholder.subtitle': 'Currently working on new projects',
+                
+                // Certification
+                'certification.title': 'Certifications & Training',
+                'certification.subtitle': 'Professional certifications I have completed to enhance competence.',
+                'certification.tech.title': 'Technology & Development',
+                'certification.tech.item1.title': 'Mini Bootcamp Back End PHP Batch 1',
+                'certification.tech.item1.desc': 'Backend development training with PHP & Laravel',
+                'certification.tech.item2.title': 'Guide to Learn SQL with AI – DQLab',
+                'certification.tech.item2.desc': 'SQL database management with AI assistance',
+                'certification.tech.item3.title': 'Learn Cloud and Gen AI Basics on AWS',
+                'certification.tech.item3.desc': 'Fundamentals of cloud computing and Generative AI at Amazon Web Services',
+                'certification.tech.item4.title': 'Learn Artificial Intelligence (AI) Basics',
+                'certification.tech.item4.desc': 'Fundamentals of artificial intelligence and machine learning',
+                'certification.experience.title': 'Experience & Academic',
+                'certification.experience.item1.title': 'Internship Certificate – PT Perta Arun Gas',
+                'certification.experience.item1.desc': 'IT Consultant Intern (July - September 2022)',
+                'certification.experience.item2.title': 'TOEFL Certificate',
+                'certification.experience.item2.desc': 'Universitas Malikussaleh - English proficiency certification',
+                
+                // Contact
+                'contact.title': 'Contact Me',
+                'contact.subtitle': 'Interested in collaborating or have questions? Feel free to contact me.',
+                'contact.card.title': 'Let\'s Work Together',
+                'contact.card.description': 'I am always open to job opportunities in administration, data entry, <br class="desktop-only"> or simple web development. Ready to contribute with the skills I have.',
+                'contact.card.phone': '+62 812-6349-8942 (WhatsApp)',
+                'contact.card.location': 'Kutablang, Aceh, Indonesia',
+                
+                // Footer
+                'footer.copyright': '© 2026 Juanda. All rights reserved. | Administrative & Web Developer'
+            }
+        };
+
+        let currentLang = 'id';
+
+        // Function to update all translatable elements
+        function updateLanguage(lang) {
+            currentLang = lang;
+            
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            // Update navigation pills
+            document.querySelectorAll('.nav-pill').forEach(pill => {
+                const key = pill.getAttribute('data-id');
+                if (key && translations[lang][key]) {
+                    pill.textContent = translations[lang][key];
+                }
+            });
+
+            // Update loading text
+            const loadingText = document.getElementById('loading-text');
+            if (loadingText) {
+                loadingText.textContent = translations[lang]['loading-text'];
+            }
+
+            // Update language buttons active state
+            document.getElementById('lang-id').classList.toggle('active', lang === 'id');
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
         }
-        animateGrid();
+
+        // Language switcher event listeners
+        document.getElementById('lang-id').addEventListener('click', () => updateLanguage('id'));
+        document.getElementById('lang-en').addEventListener('click', () => updateLanguage('en'));
+
+        // Initialize with Indonesian
+        updateLanguage('id');
     </script>
 </body>
 </html>
